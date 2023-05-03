@@ -11,7 +11,7 @@ export default class Tree {
             return null;
         }
 
-        const mid = Math.floor(sortedArray.length / 2);
+        const mid = parseInt((start + end) / 2);
         const root = new Node(sortedArray[mid]);
         root.left = this.buildTree(sortedArray, start, mid -1);
         root.right = this.buildTree(sortedArray, mid + 1, end);
@@ -211,5 +211,15 @@ export default class Tree {
         let arr = thi.levelOrder([], [], root);
         arr.sort((a, b) => a - b);
         return this.root = this.buildTree(arr);
+    }
+
+    prettyPrint(node = this.root, prefix = "", isLeft = true) {
+        if (node.rightChild) {
+        this.prettyPrint(node.rightChild, `${prefix}${isLeft ? '|   ' : '    '}`, false)
+        }
+        console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.value}`);
+        if (node.leftChild) {
+          this.prettyPrint(node.leftChild, `${prefix}${isLeft ? '    ' : '|   '}`, true)
+        }
     }
 }

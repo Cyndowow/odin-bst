@@ -5,3 +5,11 @@ export default class Node {
         this.right = null;
     }
 }
+/*
+export default function Node(data, left = null, right = null) {
+    return {
+        data: data,
+        left: left,
+        right: right,
+    }
+}*/
