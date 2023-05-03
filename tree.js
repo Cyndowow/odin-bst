@@ -82,4 +82,106 @@ export default class Tree {
 
         return root;
     }
+
+    find(value, root = this.root) {
+        if(value === null || root.data === value) {
+            return root;
+        } 
+
+        if(value > root.data) {
+            return this.find(value, root.left);
+        }
+        return this.find(value, root.right);
+    }
+
+    levelOrder(arr = [], queue = [], root = this.root) {
+        if(root === null) {
+            return;
+        }
+
+        arr.push(root.data);
+        //push children into queue
+        queue.push(root.left);
+        queue.push(root.right);
+
+        //move to next level
+        while(queue.length) {
+            const level = queue[0];
+            queue.shift();
+            this.levelOrder(arr, queue, level)
+        }
+        return arr;
+    }
+
+    inorder(arr= [], root = this.root) {
+        if(root === null) {
+            return;
+        }
+
+        //left subtree
+        if(root.left) {
+            this.inorder(arr, root.left);
+        }
+
+        //root
+        arr.push(root.data)
+
+        //right subtree
+        if(root.right) {
+            this.inorder(arr, root.right);
+        }
+        return arr;
+    }
+
+    preorder(arr = [], root = this.root) {
+        if(root === null) {
+            return;
+        }
+
+        arr.push(root.data)
+
+        if(root.left) {
+            this.preorder(arr, root.left);
+        }
+
+        if(root.right) {
+            this.preorder(arr, root.right);
+        }
+
+        return arr;
+    }
+
+    postorder(arr = [], root = this.root) {
+        if(root === null) {
+            return;
+        }
+
+        if(root.left) {
+            this.postorder(arr, root.left);
+        }
+
+        if(root.right) {
+            this.postorder(arr, root.right);
+        }
+
+        arr.push(root.data);
+
+        return arr;
+    }
+
+    height() {
+
+    }
+
+    depth() {
+
+    }
+
+    isBalanced() {
+
+    }
+
+    rebalance() {
+
+    }
 }
