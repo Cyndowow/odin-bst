@@ -20,7 +20,7 @@ export default class Tree {
 
     insert(value, root = this.root) {
         if(root === null) {
-            root = Node(value);
+            root = new Node(value);
             return root;
         }
 
@@ -208,7 +208,7 @@ export default class Tree {
     }
 
     rebalance(root = this.root) {
-        let arr = thi.levelOrder([], [], root);
+        let arr = this.levelOrder([], [], root);
         arr.sort((a, b) => a - b);
         return this.root = this.buildTree(arr);
     }
